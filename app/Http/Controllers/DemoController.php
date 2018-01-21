@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Word;
 use App\Http\Requests;
 
 class DemoController extends Controller
@@ -15,6 +15,12 @@ class DemoController extends Controller
     public function houtai(Request $request)
     {
         $input = $request->all();
-        dd($input['word']);
+        $word = new Word;
+        $word->en = $input['word'];
+        $word->cn = $input['cnword'];
+        if($word->save())
+        {
+            return "sucessfully!";
+        }
     }
 }
